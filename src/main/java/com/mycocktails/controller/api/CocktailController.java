@@ -39,6 +39,30 @@ public class CocktailController {
         return cocktailsFound;
     }
     
+    @RequestMapping("/api/cocktails/getbyingredient/{ingredient}")
+    public ArrayList<Cocktail> getByIngredient(@PathVariable String ingredient) {
+        
+        ArrayList<Cocktail> cocktailsFound = cocktailservice.getByIngredient(ingredient);
+
+        if(cocktailsFound.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "gli elementi non sono stati trovati");
+        }
+            
+        return cocktailsFound;
+    }
+    
+    @RequestMapping("/api/cocktails/getbymethod/{method}")
+    public ArrayList<Cocktail> getByMethod(@PathVariable String method) {
+        
+        ArrayList<Cocktail> cocktailsFound = cocktailservice.getByMethod(method);
+        
+        if(cocktailsFound.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "gli elementi non sono stati trovati");
+        }
+        
+        return cocktailsFound;
+    }
+    
     @RequestMapping(value="/api/cocktails", method=RequestMethod.POST)
     public Cocktail create(@RequestBody Cocktail cocktail) {
         return cocktailservice.create(cocktail);

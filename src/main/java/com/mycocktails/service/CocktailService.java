@@ -62,12 +62,29 @@ public class CocktailService {
         return cocktailsFound;
     }
     
-    /*public ArrayList<Cocktail> getByIngredient(String ingr) {
+    public ArrayList<Cocktail> getByIngredient(String ingr) {
         
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
-        for()
-    }*/
+        for(Cocktail c: list) {
+            for(Ingrediente i: c.getIngredienti()) {
+                if(i.getNome().equals(ingr))
+                    cocktailsFound.add(c);
+            }
+        }
+        return cocktailsFound;
+    }
+    
+    public ArrayList<Cocktail> getByMethod(String method) {
+        
+        ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
+
+        for(Cocktail c: list) {
+            if(c.getPreparazione().getNome() == Preparazione.Metodo.valueOf(method))
+                cocktailsFound.add(c);
+        }
+        return cocktailsFound;
+    }
     
     public Cocktail create(Cocktail cocktail) {
         
