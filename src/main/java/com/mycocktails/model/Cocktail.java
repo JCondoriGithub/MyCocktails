@@ -8,6 +8,7 @@ import java.util.Set;
 public class Cocktail {
 
     private int id;
+    private String nome;
     private Set<Ingrediente> ingredienti;
     private Preparazione preparazione;
     private Map<String, String> decorazione;
@@ -19,8 +20,9 @@ public class Cocktail {
     public Cocktail() {
     }
 
-    public Cocktail(int id, Preparazione preparazione, String tipoBicchiere, Sapori tipologia, String urlImg, String storia) {
+    public Cocktail(int id, String nome, Preparazione preparazione, String tipoBicchiere, Sapori tipologia, String urlImg, String storia) {
         this.id = id;
+        this.nome = nome;
         this.ingredienti = new LinkedHashSet();
         this.preparazione = preparazione;
         this.decorazione = new LinkedHashMap();
@@ -36,6 +38,10 @@ public class Cocktail {
 
     public int getId() {
         return id;
+    }
+
+    public String getNome() {
+        return nome;
     }
 
     public Set<Ingrediente> getIngredienti() {
@@ -70,6 +76,10 @@ public class Cocktail {
         this.id = id;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public void addIngrediente(Ingrediente ingrediente) {
         this.ingredienti.add(ingrediente);
     }
@@ -100,7 +110,7 @@ public class Cocktail {
 
     @Override
     public String toString() {
-        return "Cocktail{" + "id=" + id + ", ingredienti=" + ingredienti + ", preparazione=" + preparazione + ", decorazione=" + decorazione + ", tipoBicchiere=" + tipoBicchiere + ", tipologia=" + tipologia + ", urlImg=" + urlImg + ", storia=" + storia + '}';
+        return "Cocktail{" + "id=" + id + ", nome=" + nome + ", ingredienti=" + ingredienti + ", preparazione=" + preparazione + ", decorazione=" + decorazione + ", tipoBicchiere=" + tipoBicchiere + ", tipologia=" + tipologia + ", urlImg=" + urlImg + ", storia=" + storia + '}';
     }
     
 }
