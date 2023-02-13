@@ -22,9 +22,9 @@ public class CocktailService {
         Ingrediente ingr2 = new Ingrediente("vodka", "3/5", 4.0);
         Ingrediente ingr3 = new Ingrediente("rum", "1/2", 0.5);
         
-        Preparazione prep = new Preparazione(Preparazione.Metodo.Build, "asdfghjkl");
+        Preparazione prep = new Preparazione(Preparazione.Metodo.Build, "preparazione tipo Build");
         prep.addVariante("qwertyuiop");
-        Preparazione prep2 = new Preparazione(Preparazione.Metodo.Throwing, "mnbvcxzlkjh");
+        Preparazione prep2 = new Preparazione(Preparazione.Metodo.Throwing, "preparazione tipo Throwing");
         prep2.addVariante("lpsjjfsdggc");
         prep2.addVariante("cuhciuchaehwe");
         
