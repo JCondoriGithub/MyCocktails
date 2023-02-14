@@ -19,7 +19,7 @@ public class Preparazione {
     }
     
     public static enum Metodo {
-        Neat, Build, Build_Layer, Dry_shake, Stir_Strain, shake_strain, Throwing
+        Neat, Build, Build_Layer, Dry_shake, Stir_Strain, Shake_Strain, Throwing
     }
 
     public Metodo getNome() {

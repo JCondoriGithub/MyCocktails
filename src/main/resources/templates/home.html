@@ -27,58 +27,120 @@
             </div>
           </nav>
 
-          <br><br>
+        <br><br>
 
-          <div class="container" id="divCocktails">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Crea cocktail
+        </button>
 
-            <!--<div class="card mb-5" style="width: 18rem;">
-              <img src="./img/prova_img1.png" class="card-img-top" alt="immagine-prova">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  Button trigger modal
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                  Launch demo modal
-                </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Inserisci i dati del cocktail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </div>-->
+              <div class="modal-body">
+                
+                <form class="row g-3">
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" id="name" placeholder="Nome cocktail" required>
+                  </div>
+                  <div class="col-md-4">
+                    <select class="form-select" id="typology" required>
+                      <option selected disabled value="">Tipologia</option>
+                      <option>Amaro</option>
+                      <option>Aspro</option>
+                      <option>Dolce</option>
+                      <option>Forte</option>
+                      <option>Fruttato</option>
+                      <option>Salato</option>
+                      <option>Soave</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <input type="text" class="form-control" id="glassType" placeholder="Tipo bicchiere" required>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <textarea class="form-control" id="history" rows="1" placeholder="Storia cocktail"></textarea>
+                  </div>
+                  <hr>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="nameIngr1" placeholder="Nome ingrediente" required>
+                  </div>
+                  <div class="col-md-3 mb-0">
+                    <input type="text" class="form-control" id="oz1" placeholder="OZ" required>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="number" class="form-control" id="cl1" placeholder="CL" required>
+                  </div>
+                  <br>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="nameIngr2" placeholder="Nome ingrediente" required>
+                  </div>
+                  <div class="col-md-3 mb-0">
+                    <input type="text" class="form-control" id="oz2" placeholder="OZ" required>
+                  </div>
+                  <div class="col-md-3">
+                    <input type="number" class="form-control" id="cl2" placeholder="CL" required>
+                  </div>
+                  <hr>
+                  <div class="col-md-4">
+                    <select class="form-select" id="method" required>
+                      <option selected disabled value="">Metodo</option>
+                      <option>Build</option>
+                      <option>Build_Layer</option>
+                      <option>Dry_shake</option>
+                      <option>Neat</option>
+                      <option>Shake_Strain</option>
+                      <option>Stir_Strain</option>
+                      <option>Throwing</option>
+                    </select>
+                  </div>
+                  <div class="col-md-8 mb-2">
+                    <textarea class="form-control" id="prepDefault" rows="3" placeholder="Preparazione"></textarea>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <textarea class="form-control" id="variant1" rows="1" placeholder="Variante 1"></textarea>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <textarea class="form-control" id="variant2" rows="1" placeholder="Variante 2"></textarea>
+                  </div>
+                  <hr>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="nameDeco1" placeholder="Nome decorazione" required>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <textarea class="form-control" id="prepDeco1" rows="1" placeholder="Preparazione"></textarea>
+                  </div>
+                  <div class="col-md-5">
+                    <input type="text" class="form-control" id="nameDeco2" placeholder="Nome decorazione" required>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <textarea class="form-control" id="prepDeco2" rows="1" placeholder="Preparazione"></textarea>
+                  </div>
 
-                        <!-- Modal -->
-            <!--<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit" id="btnSendData" onclick="submitData()">Submit form</button>
                   </div>
-                  <div class="modal-body">
-                    
-                    <nav>
-                      <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Home</button>
-                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</button>
-                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</button>
-                        <button class="nav-link" id="nav-disabled-tab" data-bs-toggle="tab" data-bs-target="#nav-disabled" type="button" role="tab" aria-controls="nav-disabled" aria-selected="false" disabled>Disabled</button>
-                      </div>
-                    </nav>
-                    <div class="tab-content" id="nav-tabContent">
-                      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">tab home</div>
-                      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">tab profile: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma</div>
-                      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">tab contact</div>
-                      <div class="tab-pane fade" id="nav-disabled" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">...</div>
-                    </div>
+                </form>
 
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
               </div>
-            </div>-->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="divCards">
+          <div class="container mt-5" id="divCocktails">
 
           </div>
-          
+        </div>
 
       </div>
       
