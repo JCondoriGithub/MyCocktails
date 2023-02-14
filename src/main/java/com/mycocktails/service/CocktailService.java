@@ -22,11 +22,11 @@ public class CocktailService {
         Ingrediente ingr2 = new Ingrediente("vodka", "3/5", 4.0);
         Ingrediente ingr3 = new Ingrediente("rum", "1/2", 0.5);
         
-        Preparazione prep = new Preparazione(Preparazione.Metodo.Build, "preparazione tipo Build");
-        prep.addVariante("qwertyuiop");
-        Preparazione prep2 = new Preparazione(Preparazione.Metodo.Throwing, "preparazione tipo Throwing");
-        prep2.addVariante("lpsjjfsdggc");
-        prep2.addVariante("cuhciuchaehwe");
+        Preparazione prep = new Preparazione(Preparazione.Metodo.Build, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        prep.addVariante("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
+        Preparazione prep2 = new Preparazione(Preparazione.Metodo.Throwing, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        prep2.addVariante("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
+        prep2.addVariante("tab profile: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma");
         
         Cocktail c1 = new Cocktail(1, "cocktail1", prep2, "coppa", Cocktail.Sapori.Dolce, "./img/01.png", "kfuhwekufhicbwube");
         c1.addIngrediente(ingr3);
