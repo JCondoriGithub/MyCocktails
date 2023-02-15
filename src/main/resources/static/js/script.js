@@ -99,7 +99,7 @@ const showModal = (arrayCocktails) => {
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-danger" onclick="deleteCard(${arrayCocktails.id})">Elimina</button>
         </div>
       </div>
     </div>
@@ -173,6 +173,17 @@ async function addCard() {
   if(response.status == 200){
 
     deleteCards();
+    createCards();
+  }
+}
+
+
+async function deleteCard(id) {
+  
+  let response = await fetch('/api/cocktails/'+id, {method: 'DELETE'});
+
+  if(response.status == 200) {
+    deleteCards(),
     createCards();
   }
 }

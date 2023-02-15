@@ -30,7 +30,7 @@
         <br><br>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Crea cocktail
         </button>
 
@@ -121,20 +121,17 @@
                   <div class="col-md-6 mb-2">
                     <textarea class="form-control" id="prepDeco2" rows="1" placeholder="Preparazione"></textarea>
                   </div>
-
-                  <div class="col-12">
-                    <button class="btn btn-primary" type="submit" id="btnSendData" onclick="addCard()">Submit form</button>
+                  
+                  <div class="modal-footer">
+                    <div class="col-12">
+                      <button class="btn btn-primary" type="submit" id="btnSendData" onclick="addCard()">Salva</button>
+                    </div>
                   </div>
                 </form>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
             </div>
           </div>
         </div>
+      </div>
 
         <div id="divCards">
           <div class="container mt-5" id="divCocktails">
