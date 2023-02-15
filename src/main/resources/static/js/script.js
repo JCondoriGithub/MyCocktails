@@ -7,8 +7,9 @@ async function getAll() {
 }
 
 
-async function createCards(arrayCocktails) {
-console.log('createCards');
+async function createCards() {
+
+  let arrayCocktails = await getAll();
 
   for(let i = 0; i < arrayCocktails.length; i++) {
 
@@ -49,17 +50,18 @@ console.log('createCards');
   }
 }
 
-createCards(getAll());
+createCards();
 
 
 function deleteCards() {
-  console.log('delete')
+
   const newDivCocktails = document.createElement('divCocktails');
   newDivCocktails.id = 'divCocktails';
   newDivCocktails.className = 'container mt-5';
   const oldDivCocktails = document.getElementById('divCocktails');
   document.getElementById('divCards').replaceChild(newDivCocktails, oldDivCocktails);
 }
+
 
 var modalWrap = null;
 const showModal = (arrayCocktails) => {
@@ -104,7 +106,6 @@ const showModal = (arrayCocktails) => {
   </div>
     `;
 
-
     document.body.append(modalWrap);
 
     var modal = new bootstrap.Modal(modalWrap.querySelector(".modal"));
@@ -112,8 +113,8 @@ const showModal = (arrayCocktails) => {
 }
 
 
-function submitData() {
-console.log('submit');
+async function addCard() {
+
   let name = document.getElementById('name').value;
   let typology = document.getElementById('typology').value;
   let glassType = document.getElementById('glassType').value;
@@ -164,12 +165,14 @@ console.log('submit');
 
   let dataSend = JSON.stringify(json);
 
-  fetch('/api/cocktails', {method: 'POST', headers: {
+  let response = await fetch('/api/cocktails', {method: 'POST', headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
-  }, body: dataSend}).then(
+  }, body: dataSend});
 
-  deleteCards()).then(
-  createCards());
+  if(response.status == 200){
+
+    deleteCards();
+    createCards();
+  }
 }
-
