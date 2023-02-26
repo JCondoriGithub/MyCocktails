@@ -1,8 +1,8 @@
 package com.mycocktails.service;
 
 import com.mycocktails.model.Cocktail;
-import com.mycocktails.model.Ingrediente;
-import com.mycocktails.model.Preparazione;
+import com.mycocktails.model.Ingredient;
+import com.mycocktails.model.Preparation;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -18,30 +18,30 @@ public class CocktailService {
     
     public CocktailService() {
                 
-        Ingrediente ingr = new Ingrediente("gin", "1/4", 3.2);
-        Ingrediente ingr2 = new Ingrediente("vodka", "3/5", 4.0);
-        Ingrediente ingr3 = new Ingrediente("rum", "1/2", 0.5);
+        Ingredient ingr = new Ingredient("gin", "1/4", 3.2);
+        Ingredient ingr2 = new Ingredient("vodka", "3/5", 4.0);
+        Ingredient ingr3 = new Ingredient("rum", "1/2", 0.5);
         
-        Preparazione prep = new Preparazione(Preparazione.Metodo.Build, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
-        prep.addVariante("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
-        Preparazione prep2 = new Preparazione(Preparazione.Metodo.Throwing, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
-        prep2.addVariante("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
-        prep2.addVariante("tab profile: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma");
+        Preparation prep = new Preparation(Preparation.Method.Build, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        prep.addVariant("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
+        Preparation prep2 = new Preparation(Preparation.Method.Throwing, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        prep2.addVariant("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
+        prep2.addVariant("tab profile: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma");
         
-        Cocktail c1 = new Cocktail(1, "cocktail1", prep2, "coppa", Cocktail.Sapori.Dolce, "./img/01.png", "kfuhwekufhicbwube");
-        c1.addIngrediente(ingr3);
-        c1.addIngrediente(ingr);
-        c1.addDecorazione("limone", "zknvuhvwie");
+        Cocktail c1 = new Cocktail(1, "cocktail1", prep2, "coppa", Cocktail.Flavours.Dolce, "./img/01.png", "kfuhwekufhicbwube");
+        c1.addIngredient(ingr3);
+        c1.addIngredient(ingr);
+        c1.addDecoration("limone", "zknvuhvwie");
         
-        Cocktail c2 = new Cocktail(2, "cocktail2", prep, "calice", Cocktail.Sapori.Aspro, "./img/02.png", "ckwubucgwcyewi");
-        c2.addIngrediente(ingr);
-        c2.addIngrediente(ingr2);
-        c2.addDecorazione("ciliegia", null);
+        Cocktail c2 = new Cocktail(2, "cocktail2", prep, "calice", Cocktail.Flavours.Aspro, "./img/02.png", "ckwubucgwcyewi");
+        c2.addIngredient(ingr);
+        c2.addIngredient(ingr2);
+        c2.addDecoration("ciliegia", null);
         
-        Cocktail c3 = new Cocktail(3, "cocktail3", prep2, "calice", Cocktail.Sapori.Soave, "./img/03.png", "zcvoicvjofig<<<");
-        c3.addIngrediente(ingr2);
-        c3.addDecorazione("cetriolo", "vcjbfvisd");
-        c3.addDecorazione("limone", null);
+        Cocktail c3 = new Cocktail(3, "cocktail3", prep2, "calice", Cocktail.Flavours.Soave, "./img/03.png", "zcvoicvjofig<<<");
+        c3.addIngredient(ingr2);
+        c3.addDecoration("cetriolo", "vcjbfvisd");
+        c3.addDecoration("limone", null);
         
         list.add(c1);
         list.add(c2);
@@ -70,7 +70,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         try {
-            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getTipologia() == Cocktail.Sapori.valueOf(category)).collect(Collectors.toList());
+            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getTypology() == Cocktail.Flavours.valueOf(category)).collect(Collectors.toList());
             return cocktailsFound;
         } catch(IllegalArgumentException e) {
             return cocktailsFound;
@@ -82,8 +82,8 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         for(Cocktail c: list) {
-            for(Ingrediente i: c.getIngredienti()) {
-                if(i.getNome().equals(ingr))
+            for(Ingredient i: c.getIngredient()) {
+                if(i.getName().equals(ingr))
                     cocktailsFound.add(c);
             }
         }
@@ -96,7 +96,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         try {
-            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getPreparazione().getNome() == Preparazione.Metodo.valueOf(method)).collect(Collectors.toList());
+            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getPreparation().getName() == Preparation.Method.valueOf(method)).collect(Collectors.toList());
             return cocktailsFound;
         } catch(IllegalArgumentException e) {
             return cocktailsFound;
@@ -120,8 +120,11 @@ public class CocktailService {
             return Optional.empty();
 	}
         
-        if(cocktail.getTipologia() != null)
-            cocktailFound.get().setTipologia(cocktail.getTipologia());
+        if(cocktail.getName() != null)
+            cocktailFound.get().setName(cocktail.getName());
+        
+        if(cocktail.getTypology() != null)
+            cocktailFound.get().setTypology(cocktail.getTypology());
         
         if(cocktail.getUrlImg() != null)
             cocktailFound.get().setUrlImg((cocktail.getUrlImg()));

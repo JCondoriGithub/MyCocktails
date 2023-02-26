@@ -1,34 +1,34 @@
 package com.mycocktails.model;
 
-public class Ingrediente {
+public class Ingredient {
 
-    private String nome;
+    private String name;
     private String oz;
     private Double cl;
 
-    public Ingrediente() {
+    public Ingredient() {
     }
     
-    public Ingrediente(String nome, String oz, Double cl) {
-        this.nome = nome;
+    public Ingredient(String name, String oz, Double cl) {
+        this.name = name;
         this.oz = oz;
         this.cl = cl;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     public String getOz() {
         return oz;
     }
 
-    public double getCl() {
+    public Double getCl() {
         return cl;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setOz(String oz) {
@@ -41,7 +41,7 @@ public class Ingrediente {
 
     @Override
     public String toString() {
-        return "Ingrediente{" + "nome=" + nome + ", oz=" + oz + ", cl=" + cl + '}';
+        return "Ingredient{" + "name=" + name + ", oz=" + oz + ", cl=" + cl + '}';
     }
 
 }

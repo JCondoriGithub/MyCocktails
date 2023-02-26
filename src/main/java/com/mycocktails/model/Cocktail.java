@@ -8,31 +8,31 @@ import java.util.Set;
 public class Cocktail {
 
     private int id;
-    private String nome;
-    private Set<Ingrediente> ingredienti;
-    private Preparazione preparazione;
-    private Map<String, String> decorazione;
-    private String tipoBicchiere;
-    private Sapori tipologia;
+    private String name;
+    private Set<Ingredient> ingredient;
+    private Preparation preparation;
+    private Map<String, String> decoration;
+    private String glassType;
+    private Flavours typology;
     private String urlImg;
-    private String storia;
+    private String history;
 
     public Cocktail() {
     }
 
-    public Cocktail(int id, String nome, Preparazione preparazione, String tipoBicchiere, Sapori tipologia, String urlImg, String storia) {
+    public Cocktail(int id, String name, Preparation preparation, String glassType, Flavours typology, String urlImg, String history) {
         this.id = id;
-        this.nome = nome;
-        this.ingredienti = new LinkedHashSet();
-        this.preparazione = preparazione;
-        this.decorazione = new LinkedHashMap();
-        this.tipoBicchiere = tipoBicchiere;
-        this.tipologia = tipologia;
+        this.name = name;
+        this.ingredient = new LinkedHashSet();
+        this.preparation = preparation;
+        this.decoration = new LinkedHashMap();
+        this.glassType = glassType;
+        this.typology = typology;
         this.urlImg = urlImg;
-        this.storia = storia;
+        this.history = history;
     }
 
-    public static enum Sapori {
+    public static enum Flavours {
         Dolce, Amaro, Aspro, Fruttato, Salato, Forte, Soave
     }
 
@@ -40,78 +40,78 @@ public class Cocktail {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public Set<Ingrediente> getIngredienti() {
-        return ingredienti;
+    public Set<Ingredient> getIngredient() {
+        return ingredient;
     }
 
-    public Preparazione getPreparazione() {
-        return preparazione;
+    public Preparation getPreparation() {
+        return preparation;
     }
 
-    public Map<String, String> getDecorazione() {
-        return decorazione;
+    public Map<String, String> getDecoration() {
+        return decoration;
     }
 
-    public String getTipoBicchiere() {
-        return tipoBicchiere;
+    public String getGlassType() {
+        return glassType;
     }
 
-    public Sapori getTipologia() {
-        return tipologia;
+    public Flavours getTypology() {
+        return typology;
     }
 
     public String getUrlImg() {
         return urlImg;
     }
 
-    public String getStoria() {
-        return storia;
+    public String getHistory() {
+        return history;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void addIngredient(Ingredient ingredient) {
+        this.ingredient.add(ingredient);
     }
 
-    public void addIngrediente(Ingrediente ingrediente) {
-        this.ingredienti.add(ingrediente);
+    public void setPreparation(Preparation preparation) {
+        this.preparation = preparation;
+    }
+    
+    public void addDecoration(String name, String prep) {
+        this.decoration.put(name, prep);
     }
 
-    public void setPreparazione(Preparazione preparazione) {
-        this.preparazione = preparazione;
+    public void setGlassType(String glassType) {
+        this.glassType = glassType;
     }
 
-    public void addDecorazione(String nome, String prep) {
-        this.decorazione.put(nome, prep);
-    }
-
-    public void setTipoBicchiere(String tipoBicchiere) {
-        this.tipoBicchiere = tipoBicchiere;
-    }
-
-    public void setTipologia(Sapori tipologia) {
-        this.tipologia = tipologia;
+    public void setTypology(Flavours typology) {
+        this.typology = typology;
     }
 
     public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
     }
 
-    public void setStoria(String storia) {
-        this.storia = storia;
+    public void setHistory(String history) {
+        this.history = history;
     }
 
     @Override
     public String toString() {
-        return "Cocktail{" + "id=" + id + ", nome=" + nome + ", ingredienti=" + ingredienti + ", preparazione=" + preparazione + ", decorazione=" + decorazione + ", tipoBicchiere=" + tipoBicchiere + ", tipologia=" + tipologia + ", urlImg=" + urlImg + ", storia=" + storia + '}';
+        return "Cocktail{" + "id=" + id + ", name=" + name + ", ingredient=" + ingredient + ", preparation=" + preparation + ", decoration=" + decoration + ", glassType=" + glassType + ", typology=" + typology + ", urlImg=" + urlImg + ", history=" + history + '}';
     }
-    
+
 }
     
