@@ -1,15 +1,16 @@
 package com.mycocktails.service;
 
+import com.mycocktails.enums.Flavours;
+import com.mycocktails.enums.Method;
 import com.mycocktails.model.Cocktail;
 import com.mycocktails.model.Ingredient;
 import com.mycocktails.model.Preparation;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-@Slf4j
 @Service
 public class CocktailService {
 
@@ -22,23 +23,23 @@ public class CocktailService {
         Ingredient ingr2 = new Ingredient("vodka", "3/5", 4.0);
         Ingredient ingr3 = new Ingredient("rum", "1/2", 0.5);
         
-        Preparation prep = new Preparation(Preparation.Method.Build, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        Preparation prep = new Preparation(Method.Build, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
         prep.addVariant("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
-        Preparation prep2 = new Preparation(Preparation.Method.Throwing, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
+        Preparation prep2 = new Preparation(Method.Throwing, "Versane nello Shot la Crema di Cacao Scura e la Vodka In un tin, Versare la crema di latte e frustare con il mix per montarla. Aggiungerla delicatamente allo shot.");
         prep2.addVariant("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since");
         prep2.addVariant("tab profile: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to ma");
         
-        Cocktail c1 = new Cocktail(1, "cocktail1", prep2, "coppa", Cocktail.Flavours.Dolce, "./img/01.png", "kfuhwekufhicbwube");
+        Cocktail c1 = new Cocktail(1, "cocktail1", prep2, "coppa", Flavours.Dolce, "./img/01.png", "kfuhwekufhicbwube");
         c1.addIngredient(ingr3);
         c1.addIngredient(ingr);
         c1.addDecoration("limone", "zknvuhvwie");
         
-        Cocktail c2 = new Cocktail(2, "cocktail2", prep, "calice", Cocktail.Flavours.Aspro, "./img/02.png", "ckwubucgwcyewi");
+        Cocktail c2 = new Cocktail(2, "cocktail2", prep, "calice", Flavours.Aspro, "./img/02.png", "ckwubucgwcyewi");
         c2.addIngredient(ingr);
         c2.addIngredient(ingr2);
         c2.addDecoration("ciliegia", null);
         
-        Cocktail c3 = new Cocktail(3, "cocktail3", prep2, "calice", Cocktail.Flavours.Soave, "./img/03.png", "zcvoicvjofig<<<");
+        Cocktail c3 = new Cocktail(3, "cocktail3", prep2, "calice", Flavours.Soave, "./img/03.png", "zcvoicvjofig<<<");
         c3.addIngredient(ingr2);
         c3.addDecoration("cetriolo", "vcjbfvisd");
         c3.addDecoration("limone", null);
@@ -70,7 +71,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         try {
-            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getTypology() == Cocktail.Flavours.valueOf(category)).collect(Collectors.toList());
+            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getTypology() == Flavours.valueOf(category)).collect(Collectors.toList());
             return cocktailsFound;
         } catch(IllegalArgumentException e) {
             return cocktailsFound;
@@ -82,7 +83,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         for(Cocktail c: list) {
-            for(Ingredient i: c.getIngredient()) {
+            for(Ingredient i: c.getIngredients()) {
                 if(i.getName().equals(ingr))
                     cocktailsFound.add(c);
             }
@@ -96,7 +97,7 @@ public class CocktailService {
         ArrayList<Cocktail> cocktailsFound = new ArrayList<Cocktail>();
         
         try {
-            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getPreparation().getName() == Preparation.Method.valueOf(method)).collect(Collectors.toList());
+            cocktailsFound = (ArrayList<Cocktail>) list.stream().filter(item -> item.getPreparation().getName() == Method.valueOf(method)).collect(Collectors.toList());
             return cocktailsFound;
         } catch(IllegalArgumentException e) {
             return cocktailsFound;
@@ -104,8 +105,8 @@ public class CocktailService {
     }
     
     public Cocktail create(Cocktail cocktail) {
-        
-        lastId++;
+
+    	lastId++;
         cocktail.setId(lastId);
         list.add(cocktail);
         

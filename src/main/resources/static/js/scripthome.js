@@ -27,12 +27,12 @@ async function createCards() {
 
     const cardTitle = document.createElement('h5');
     cardTitle.className = 'card-title';
-    cardTitle.appendChild(document.createTextNode(arrayCocktails[i].nome));
+    cardTitle.appendChild(document.createTextNode(arrayCocktails[i].name));
     cardBody.appendChild(cardTitle);
 
     const prepDefault = document.createElement('p');
     prepDefault.className = 'card-text';
-    prepDefault.appendChild(document.createTextNode(arrayCocktails[i].preparazione.prepDefault));
+    prepDefault.appendChild(document.createTextNode(arrayCocktails[i].preparation.prepDefault));
     cardBody.appendChild(prepDefault);
 
     const btn = document.createElement("button");
@@ -63,7 +63,7 @@ function deleteCards() {
 
 
 var modalWrap = null;
-const showModal = (arrayCocktails) => {
+const showModal = (cocktail) => {
 
     if (modalWrap != null) {
         modalWrap.remove();
@@ -76,7 +76,7 @@ const showModal = (arrayCocktails) => {
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">${arrayCocktails.nome}</h1>
+          <h1 class="modal-title fs-5" id="exampleModalLabel">${cocktail.name}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -89,16 +89,16 @@ const showModal = (arrayCocktails) => {
           </div>
         </nav>
         <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"><br><b>Tipologia: </b>${arrayCocktails.tipologia}<hr><b>Tipo bicchiere: </b>${arrayCocktails.tipoBicchiere}<hr><b>Storia: </b>${arrayCocktails.storia}</div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><br><b>Ingredienti</b>${JSON.stringify(arrayCocktails.ingredienti)}<hr>${JSON.stringify(arrayCocktails.decorazione)}</div>
-          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"><br><b>Metodo: </b>${arrayCocktails.preparazione.nome}<hr><b>Preparazione default: </b>${arrayCocktails.preparazione.prepDefault}<hr><b>Variante: </b>${arrayCocktails.preparazione.varianti.join('<br><b>Variante: </b>')}</div>
+          <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"><br><b>Tipologia: </b>${cocktail.typology}<hr><b>Tipo bicchiere: </b>${cocktail.glassType}<hr><b>Storia: </b>${cocktail.history}</div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><br><b>Ingredienti</b>${JSON.stringify(cocktail.ingredients)}<hr>${JSON.stringify(cocktail.decorations)}</div>
+          <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"><br><b>Metodo: </b>${cocktail.preparation.name}<hr><b>Preparazione default: </b>${cocktail.preparation.prepDefault}<hr><b>Variante: </b>${cocktail.preparation.variants.join('<br><b>Variante: </b>')}</div>
         </div>
         
 
         </div>
         <div class="modal-footer">
           <a href="/edit/cocktail"><button type="button" class="btn btn-outline-success">Modifica</button></a>
-          <button type="button" class="btn btn-danger" onclick="deleteCard(${arrayCocktails.id})">Elimina</button>
+          <button type="button" class="btn btn-danger" onclick="deleteCard(${cocktail.id})">Elimina</button>
         </div>
       </div>
     </div>

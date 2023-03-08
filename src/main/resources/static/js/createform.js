@@ -1,4 +1,4 @@
-function addCard() {
+async function addCard() {
 
     let name = document.getElementById('name').value;
   let typology = document.getElementById('typology').value;
@@ -20,39 +20,44 @@ function addCard() {
   let prepDeco2 = document.getElementById('prepDeco2').value;
 
   const json = {
-    "nome":name,
-    "tipologia":typology,
-    "tipoBicchiere":glassType,
-    "ingredienti":[{
-      "nome":nameIngr1,
+    "name":name,
+    "typology":typology,
+    "glassType":glassType,
+    "ingredients":[{
+      "name":nameIngr1,
       "oz":oz1,
       "cl":cl1
     },
     {
-      "nome":nameIngr2,
+      "name":nameIngr2,
       "oz":oz2,
       "cl":cl2
     }],
-    "preparazione":{
-      "nome":method,
+    "preparation":{
+      "name":method,
       "prepDefault":prepDefault,
-      "varianti":[Variant1, variant2]
+      "variants":[Variant1, variant2]
     },
-    "decorazione":{
+    "decorations":{
       nameDeco1:prepDeco1,
       nameDeco2:prepDeco2,
     },
-    "tipoBicchiere":glassType,
-    "tipologia":typology,
-    "storia":history,
+    "glassType":glassType,
+    "tipology":typology,
+    "history":history,
     "urlImg":"/img/prova_img1.png"
   }
 
   let dataSend = JSON.stringify(json);
   console.log(dataSend);
-  fetch('/api/cocktails', {method: 'POST', headers: {
+
+  let response = await fetch('/api/cocktails', {method: 'POST', headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }, body: dataSend});
+
+  //if(response.status = 200) {
+    console.log(response.status);
+  //}
 
 }
