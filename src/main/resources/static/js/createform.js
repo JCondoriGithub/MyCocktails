@@ -39,8 +39,6 @@ async function addCard() {
       "variants":[Variant1, variant2]
     },
     "decorations":{
-      nameDeco1:prepDeco1,
-      nameDeco2:prepDeco2,
     },
     "glassType":glassType,
     "tipology":typology,
@@ -48,16 +46,18 @@ async function addCard() {
     "urlImg":"/img/prova_img1.png"
   }
 
+  json.decorations[nameDeco1] = prepDeco1;
+  json.decorations[nameDeco2] = prepDeco2;
+
   let dataSend = JSON.stringify(json);
-  console.log(dataSend);
+  console.log(json);
 
   let response = await fetch('/api/cocktails', {method: 'POST', headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   }, body: dataSend});
 
-  //if(response.status = 200) {
-    console.log(response.status);
-  //}
-
+  if(response.status == 200) {
+    alert("il cocktail è stato salvato!");
+  }
 }

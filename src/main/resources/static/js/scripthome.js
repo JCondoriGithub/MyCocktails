@@ -90,7 +90,7 @@ const showModal = (cocktail) => {
         </nav>
         <div class="tab-content" id="nav-tabContent">
           <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"><br><b>Tipologia: </b>${cocktail.typology}<hr><b>Tipo bicchiere: </b>${cocktail.glassType}<hr><b>Storia: </b>${cocktail.history}</div>
-          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><br><b>Ingredienti</b>${JSON.stringify(cocktail.ingredients)}<hr>${JSON.stringify(cocktail.decorations)}</div>
+          <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"><br><b>Ingredienti</b><br><div id="divIngredients"></div><div id="divDecorations"></div></div>
           <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"><br><b>Metodo: </b>${cocktail.preparation.name}<hr><b>Preparazione default: </b>${cocktail.preparation.prepDefault}<hr><b>Variante: </b>${cocktail.preparation.variants.join('<br><b>Variante: </b>')}</div>
         </div>
         
@@ -106,6 +106,53 @@ const showModal = (cocktail) => {
     `;
 
     document.body.append(modalWrap);
+
+    for(let i = 0; i < cocktail.ingredients.length; i++) {
+
+      const divIngr = document.createElement('div');
+
+      const bName = document.createElement('b');
+      bName.appendChild(document.createTextNode('nome: '));
+      divIngr.appendChild(bName);
+
+      const spanName = document.createElement('span');
+      spanName.appendChild(document.createTextNode(cocktail.ingredients[i].name));
+      divIngr.appendChild(spanName);
+
+      const bOZ = document.createElement('b');
+      bOZ.appendChild(document.createTextNode('oz: '));
+      divIngr.appendChild(bOZ);
+
+      const spanOZ = document.createElement('span');
+      spanOZ.appendChild(document.createTextNode(cocktail.ingredients[i].oz));
+      divIngr.appendChild(spanOZ);
+
+      const bCL = document.createElement('b');
+      bCL.appendChild(document.createTextNode('cl: '));
+      divIngr.appendChild(bCL);
+
+      const spanCL = document.createElement('span');
+      spanCL.appendChild(document.createTextNode(cocktail.ingredients[i].cl));
+      divIngr.appendChild(spanCL);
+
+      document.getElementById('divIngredients').appendChild(divIngr);
+    }
+
+    let namedec = Object.keys(cocktail.decorations);
+    namedec.forEach(element => {
+      
+      const divPrep = document.createElement('div');
+
+      const nameElem = document.createElement('span');
+      nameElem.appendChild(document.createTextNode(element));
+      divPrep.appendChild(nameElem);
+
+      const valueElem = document.createElement('span');
+      valueElem.appendChild(document.createTextNode(cocktail.decorations[element]));
+      divPrep.appendChild(valueElem);
+
+      document.getElementById('divDecorations').appendChild(divPrep);
+    });
 
     var modal = new bootstrap.Modal(modalWrap.querySelector(".modal"));
     modal.show();
