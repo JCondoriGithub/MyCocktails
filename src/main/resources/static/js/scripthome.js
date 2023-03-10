@@ -97,8 +97,8 @@ const showModal = (cocktail) => {
 
         </div>
         <div class="modal-footer">
-          <a href="/edit/cocktail"><button type="button" class="btn btn-outline-success">Modifica</button></a>
-          <button type="button" class="btn btn-danger" onclick="deleteCard(${cocktail.id})">Elimina</button>
+          <a href="/edit/cocktail"><button type="button" class="btn btn-success">Modifica</button></a>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteCard(${cocktail.id})">Elimina</button>
         </div>
       </div>
     </div>
@@ -166,5 +166,6 @@ async function deleteCard(id) {
   if(response.status == 200) {
     deleteCards(),
     createCards();
+    alert('il cocktail è stato eliminato!');
   }
 }
