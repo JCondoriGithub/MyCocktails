@@ -1,69 +1,11 @@
-async function getAll() {
+import { getAll, createCards, deleteCard } from "./utils.js";
 
-    let response = await fetch('api/cocktails');
-    let arr = await response.json();
-    console.log(arr);
-    return arr;
-}
-
-async function createCards() {
-
-  let arrayCocktails = await getAll();
-
-  for(let i = 0; i < arrayCocktails.length; i++) {
-
-    const divCard = document.createElement('div');
-    divCard.className = 'card mb-5';
-    divCard.style.width = '18rem';
-
-    const img = document.createElement('img');
-    img.className = 'card-img-top';
-    img.src = arrayCocktails[i].urlImg;
-    img.alt = 'immagine-prova';
-    divCard.appendChild(img);
-
-    const cardBody = document.createElement('div');
-    cardBody.className = 'card-body';
-
-    const cardTitle = document.createElement('h5');
-    cardTitle.className = 'card-title';
-    cardTitle.appendChild(document.createTextNode(arrayCocktails[i].name));
-    cardBody.appendChild(cardTitle);
-
-    const prepDefault = document.createElement('p');
-    prepDefault.className = 'card-text';
-    prepDefault.appendChild(document.createTextNode(arrayCocktails[i].preparation.prepDefault));
-    cardBody.appendChild(prepDefault);
-
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = 'btn btn-primary';
-    btn.appendChild(document.createTextNode('Dettagli'));
-    btn.addEventListener("click", function() {
-        showModal(arrayCocktails[i]);
-    });
-    cardBody.appendChild(btn);
-
-    divCard.appendChild(cardBody);
-    document.getElementById('divCocktails').appendChild(divCard);
-  }
-}
-
-createCards();
-
-
-function deleteCards() {
-
-  const newDivCocktails = document.createElement('divCocktails');
-  newDivCocktails.id = 'divCocktails';
-  newDivCocktails.className = 'container mt-5';
-  const oldDivCocktails = document.getElementById('divCocktails');
-  document.getElementById('divCards').replaceChild(newDivCocktails, oldDivCocktails);
-}
+const arr = await getAll();
+createCards(arr);
 
 
 var modalWrap = null;
-const showModal = (cocktail) => {
+export const showModal = (cocktail) => {
 
     if (modalWrap != null) {
         modalWrap.remove();
@@ -98,7 +40,7 @@ const showModal = (cocktail) => {
         </div>
         <div class="modal-footer">
           <a href="/edit/cocktail"><button type="button" class="btn btn-success">Modifica</button></a>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteCard(${cocktail.id})">Elimina</button>
+          <button type="button" id="btnDelete" class="btn btn-danger" data-bs-dismiss="modal">Elimina</button>
         </div>
       </div>
     </div>
@@ -154,18 +96,10 @@ const showModal = (cocktail) => {
       document.getElementById('divDecorations').appendChild(divPrep);
     });
 
+    document.getElementById('btnDelete').addEventListener('click', function (){
+      deleteCard(cocktail.id);
+    })
+
     var modal = new bootstrap.Modal(modalWrap.querySelector(".modal"));
     modal.show();
-}
-
-
-async function deleteCard(id) {
-  
-  let response = await fetch('/api/cocktails/'+id, {method: 'DELETE'});
-
-  if(response.status == 200) {
-    deleteCards(),
-    createCards();
-    alert('il cocktail è stato eliminato!');
-  }
 }
