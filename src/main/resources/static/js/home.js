@@ -96,7 +96,7 @@ export const showModal = (cocktail) => {
       document.getElementById('divDecorations').appendChild(divPrep);
     });
 
-    document.getElementById('btnDelete').addEventListener('click', function (){
+    document.getElementById('btnDelete').addEventListener('click', function() {
       deleteCard(cocktail.id);
     })
 
