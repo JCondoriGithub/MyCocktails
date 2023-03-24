@@ -1,23 +1,34 @@
 package com.mycocktails.service;
 
+import com.mycocktails.controller.api.CocktailController;
 import com.mycocktails.enums.Flavours;
 import com.mycocktails.enums.Method;
+import com.mycocktails.mapstruct.mapper.MapStructMapper;
 import com.mycocktails.model.Cocktail;
 import com.mycocktails.model.Ingredient;
 import com.mycocktails.model.Preparation;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class CocktailService {
 
     private ArrayList<Cocktail> list = new ArrayList<Cocktail>();
     private int lastId;
     
+    private MapStructMapper mapper;
+    
     public CocktailService() {
+    	
+    	mapper = Mappers.getMapper(MapStructMapper.class);
                 
         Ingredient ingr = new Ingredient("gin", "1/4", 3.2);
         Ingredient ingr2 = new Ingredient("vodka", "3/5", 4.0);
@@ -119,16 +130,12 @@ public class CocktailService {
 
         if(cocktailFound.isEmpty()) {
             return Optional.empty();
-	}
+        }
         
-        if(cocktail.getName() != null)
-            cocktailFound.get().setName(cocktail.getName());
+        log.info("mi arriva: {}", cocktail);
+        log.info("trovo: {}", cocktailFound.get());
         
-        if(cocktail.getTypology() != null)
-            cocktailFound.get().setTypology(cocktail.getTypology());
-        
-        if(cocktail.getUrlImg() != null)
-            cocktailFound.get().setUrlImg((cocktail.getUrlImg()));
+        mapper.update(cocktailFound.get(), cocktail);
         
         return cocktailFound;
     }
