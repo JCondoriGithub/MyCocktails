@@ -12,7 +12,12 @@ public interface MapStructMapper {
 	Ingredient mapIngredient(Ingredient ingredient);
 	
 	Preparation mapPreparation(Preparation preparation);
-	
+
     @Mapping(target = "id", ignore = true)
 	void update(@MappingTarget Cocktail cocktailToUpdate, Cocktail cocktail);
+
+	@Condition
+	default boolean isNotEmpty(String value) {
+	   return value != null && !value.isEmpty();
+   }
 }

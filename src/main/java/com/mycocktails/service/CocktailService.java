@@ -136,6 +136,8 @@ public class CocktailService {
         log.info("trovo: {}", cocktailFound.get());
         
         mapper.update(cocktailFound.get(), cocktail);
+
+        log.info("dopo mappatura: {}", cocktailFound.get());
         
         return cocktailFound;
     }

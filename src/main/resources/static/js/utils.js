@@ -126,6 +126,11 @@ export function createJson() {
     json.decorations[nameDeco1] = prepDeco1;
     json.decorations[nameDeco2] = prepDeco2;
 
+    if(Object.keys(json.decorations) == "") {
+        json.decorations = null;
+        console.log('si');
+    }
+    
     console.log(json);
     return JSON.stringify(json);
 }
@@ -142,5 +147,19 @@ export async function sendPost(dataSend) {
 
     if (response.status == 200) {
         alert("il cocktail è stato salvato!");
+    }
+}
+
+export async function sendPut(dataSend, id) {
+	
+    let response = await fetch('/api/cocktails/' + id, {
+        method: 'PUT', headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }, body: dataSend
+    });
+
+    if (response.status == 200) {
+        alert("il cocktail è stato aggiornato!");
     }
 }
