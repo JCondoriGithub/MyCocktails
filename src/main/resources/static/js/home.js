@@ -1,8 +1,9 @@
-import { getAll, createCards, deleteCard, createJson, sendPut } from "./utils.js";
+import { getAll, createCards } from "./utils.js";
+import { deleteCard, sendPut } from "./requests.js";
+import { createJson } from "./generateJson.js";
 
 const arr = await getAll();
 createCards(arr);
-
 
 var modalWrap = null;
 export const showModal = (cocktail) => {
@@ -201,13 +202,13 @@ export const showModal2 = (cocktail) => {
       ingrHtml += `
 
     <div class="col-md-5">
-      <input type="text" class="form-control" id="nameIngr${i+1}" placeholder="Nome ingrediente" value="${cocktail.ingredients[i]? cocktail.ingredients[i].name : ''}" required>
+      <input type="text" class="form-control" id="nameIngr${i+1}" placeholder="Nome ingrediente" value="${cocktail.ingredients[i]? cocktail.ingredients[i].name : ''}">
     </div>
     <div class="col-md-3 mb-0">
-      <input type="text" class="form-control" id="oz${i+1}" placeholder="OZ" value="${cocktail.ingredients[i]? cocktail.ingredients[i].oz : ''}" required>
+      <input type="text" class="form-control" id="oz${i+1}" placeholder="OZ" value="${cocktail.ingredients[i]? cocktail.ingredients[i].oz : ''}">
     </div>
     <div class="col-md-3">
-        <input type="number" class="form-control" id="cl${i+1}" placeholder="CL" value="${cocktail.ingredients[i]? cocktail.ingredients[i].cl : ''}" required>
+        <input type="number" class="form-control" id="cl${i+1}" placeholder="CL" value="${cocktail.ingredients[i]? cocktail.ingredients[i].cl : ''}">
     </div>
     `;
     }
@@ -244,7 +245,7 @@ export const showModal2 = (cocktail) => {
 
       decoHtml += `
     <div class="col-md-5">
-      <input type="text" class="form-control" id="nameDeco${i+1}" placeholder="Nome decorazione" value="${nameProp[i]? nameProp[i] : ''}" required>
+      <input type="text" class="form-control" id="nameDeco${i+1}" placeholder="Nome decorazione" value="${nameProp[i]? nameProp[i] : ''}">
     </div>
     <div class="col-md-6 mb-2">
       <textarea class="form-control" id="prepDeco${i+1}" rows="1" placeholder="Preparazione">${cocktail.decorations[nameProp[i]]? cocktail.decorations[nameProp[i]] : ''}</textarea>

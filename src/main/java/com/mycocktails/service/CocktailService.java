@@ -18,8 +18,8 @@ import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
 @Slf4j
-@Service
-public class CocktailService {
+@Service("mainCocktailService")
+public class CocktailService implements InterfaceCocktailService {
 
     private ArrayList<Cocktail> list = new ArrayList<Cocktail>();
     private int lastId;
